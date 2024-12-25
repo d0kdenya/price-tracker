@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  sqlite:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.sqlite
+    image: custom-sqlite
+    container_name: sqlite_container
+    volumes:
+      - sqlite_data:/app
+      - ./data:/app
+    networks:
+      - app-network
+
+volumes:
+  sqlite_data:
+
+networks:
+  app-network:
+    driver: bridge
